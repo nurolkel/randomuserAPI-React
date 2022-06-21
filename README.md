@@ -127,3 +127,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     //     setInterval(updateCountDown, 1000);
     // },[date])
     # randomuserAPI-React
+
+
+if (!searchTerm) {
+                        
+                        return elements
+                    
+                    } else if (searchTerm) {

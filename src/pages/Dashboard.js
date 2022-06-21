@@ -20,7 +20,7 @@ function Dashboard() {
                 <div className="p-5 flex flex-col justify-center items-center">
                     <h3 className="text-xl font-semibold text-white p-5 m-5">Previous User</h3>
                     <div className="w-10/12">
-                        {prev[0] && prev.map(element => {
+                        {prev && prev.map(element => {
                         
                             const { name: {first, last}, picture: {large}, id } = element;
                             
@@ -42,12 +42,10 @@ function Dashboard() {
                 
             
             <div className="grid grid-cols-1 gap-[4rem] mt-3 p-5  items-center md:grid-cols-2 w-10/12 ">
-                {users && users.filter(elements => {
-                    if (!searchTerm) {
-                        
-                        return elements
-                    
-                    } else if (searchTerm) {
+                {users && users.filter((elements) => {
+                
+            
+                  if (searchTerm) {
                         
                         if ((elements.name.first.toLowerCase().includes(searchTerm.toLowerCase()) || elements.name.last.toLowerCase().includes(searchTerm.toLowerCase()))) {
                             
@@ -55,6 +53,10 @@ function Dashboard() {
                         
                         }
                     }
+
+                    
+
+                    return !searchTerm;
                 }).map(values => {
                     
                     const { name:{first, last}, picture:{large}, id } = values;
