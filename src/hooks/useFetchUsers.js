@@ -46,9 +46,7 @@ const useFetchUsers = () => {
   
    
     return {
-        
-        users,
-        
+        users
     }
   
 }

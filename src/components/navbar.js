@@ -1,32 +1,33 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { DataContext } from "../context/DataContext";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import useNavBar from "../hooks/useNavBar";
 import { Transition } from "@headlessui/react";
-
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-    const { prev } = useContext(DataContext);
+    
+    const { users,previous } = useSelector(store => store.users)
+    const previousUser = users.find(user => user.id === previous);
     const { open, setOpen, toggleNavBar } = useNavBar();
 
-    useEffect(() => {
-        function handleClickOutside(e) {
-            if (open && window.innerWidth >= 1024) {
-                setOpen(false);
-            }
-          }
+    // useEffect(() => {
+    //     function handleClickOutside(e) {
+    //         if (open && window.innerWidth >= 1024) {
+    //             setOpen(false);
+    //         }
+    //       }
           
-        document.addEventListener('click', handleClickOutside);
+    //     window.addEventListener('click', handleClickOutside);
 
-        return () => {
-           document.removeEventListener('click', handleClickOutside);
-          };
-    },[open, setOpen])
+    //     return () => {
+    //        document.removeEventListener('click', handleClickOutside);
+    //       };
+    // },[open, setOpen])
 
     return (
-        <nav className="bg-indigo-500">
+        <nav className="bg-indigo-500" data-nav>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
@@ -51,12 +52,12 @@ const Navbar = () => {
                       Dashboard
                     </NavLink>
   
-                    {prev[0] && 
+                    {previousUser &&
                     <NavLink
-                      to={`${prev[0].id}`}
+                      to={`user/${previousUser.id}`}
                       className="text-white hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
-                      {`${prev[0].name.first} ${prev[0].name.last}`}
+                      {`${previousUser.name.first} ${previousUser.name.last}`}
                     </NavLink>
                     }
                   </div>
@@ -90,9 +91,9 @@ const Navbar = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            {(ref) => (
+            {open => (
               <div className="md:hidden" id="mobile-menu">
-                <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <NavLink
                     to="/"
                     className="hover:bg-purple-700 text-white block px-3 py-2 rounded-md text-base font-medium"
@@ -106,12 +107,12 @@ const Navbar = () => {
                   >
                     Dashboard
                   </NavLink>
-                  {prev[0] &&
+                  {previousUser &&
                     <NavLink
-                        to={`${prev[0].id}`}
+                        to={`user/${previousUser.id}`}
                         className="text-white hover:bg-purple-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     >
-                        {`${prev[0].name.first} ${prev[0].name.last}`}
+                        {`${previousUser.name.first} ${previousUser.name.last}`}
                     </NavLink>
                   }
                 </div>

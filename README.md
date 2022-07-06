@@ -134,3 +134,17 @@ if (!searchTerm) {
                         return elements
                     
                     } else if (searchTerm) {
+
+filter users
+      
+search term
+         
+
+
+  search bar component arguements = { setSearchTerm, value, setValue }
+
+
+  <Link to={`/${id}`} key={id} onClick={() => dispatch(selectPrevious(id))} data-userid={id} className="bg-slate-400 w-full rounded-lg" >  
+  </Link>
+
+ 

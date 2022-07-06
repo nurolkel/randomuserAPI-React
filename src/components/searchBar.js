@@ -1,8 +1,11 @@
 import { useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { inputSearch } from '../features/users/usersSlice'
 
-const SearchBar = ({ setSearchTerm, value, setValue }) => {
+const SearchBar = ({ searchTerm, setSearchTerm }) => {
     
-    
+    // const dispatch = useDispatch();
+    // const { searchTerm } = useSelector(store => store.users);
 
     const initial = useRef(true);
 
@@ -12,19 +15,19 @@ const SearchBar = ({ setSearchTerm, value, setValue }) => {
             return;
         }
         const timer = setTimeout(()=> {
-            setSearchTerm(value);
+            setSearchTerm(searchTerm);
         },300)
 
         return () => clearTimeout(timer);
-    },[setSearchTerm, value])
+    },[searchTerm, setSearchTerm])
 
     return (
         <div className="flex flex-row gap-3 justify-evenly p-5 my-3 bg-indigo-500 items-center">
             <label htmlFor="searchBar" className="text-xl text-white md:text-2xl lg:text-4xl">Search Users</label>
             <input 
                 type="text"
-                value={value}
-                onChange={event => setValue(event.currentTarget.value)}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="text-black rounded-full p-4 w-6/12 text-xl"
             />
         </div>
