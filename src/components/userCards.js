@@ -1,8 +1,5 @@
-import { useDispatch } from "react-redux"
-import { selectPrevious } from '../features/users/usersSlice'
-
 export default function UserCard({ first,last, picture, id }) {
-    const dispatch = useDispatch();
+    
 
 
     return (

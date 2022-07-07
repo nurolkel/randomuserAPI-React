@@ -1,12 +1,7 @@
 import { useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { inputSearch } from '../features/users/usersSlice'
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
     
-    // const dispatch = useDispatch();
-    // const { searchTerm } = useSelector(store => store.users);
-
     const initial = useRef(true);
 
     useEffect(() => {

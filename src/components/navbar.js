@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -10,21 +9,9 @@ const Navbar = () => {
     
     const { users,previous } = useSelector(store => store.users)
     const previousUser = users.find(user => user.id === previous);
-    const { open, setOpen, toggleNavBar } = useNavBar();
+    const { open, toggleNavBar } = useNavBar();
 
-    // useEffect(() => {
-    //     function handleClickOutside(e) {
-    //         if (open && window.innerWidth >= 1024) {
-    //             setOpen(false);
-    //         }
-    //       }
-          
-    //     window.addEventListener('click', handleClickOutside);
-
-    //     return () => {
-    //        document.removeEventListener('click', handleClickOutside);
-    //       };
-    // },[open, setOpen])
+  
 
     return (
         <nav className="bg-indigo-500" data-nav>
@@ -91,7 +78,7 @@ const Navbar = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            {open => (
+            {open && 
               <div className="md:hidden" id="mobile-menu">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <NavLink
@@ -117,7 +104,7 @@ const Navbar = () => {
                   }
                 </div>
               </div>
-            )}
+            }
           </Transition>
         </nav>
       

@@ -1,22 +1,16 @@
-import { useEffect, useContext, useRef } from "react";
-import { DataContext } from "../context/DataContext";
 import useBirthdayCountdown from "../hooks/useBirthdayCountdown";
 import BreadCrumb from "../components/breadcrumbs";
 import { format } from "date-fns";
 import { AiFillMobile, AiFillPhone } from 'react-icons/ai'
-import { useDispatch, useSelector } from "react-redux";
-import { birthdayCountdown } from "../features/birthday/birthdaySlice";
+import {  useSelector } from "react-redux";
+
 
 
 const Profile = () => {
-    //const userId = match.params;
     const { users, previous } = useSelector(state => state.users);
     const previousUser = users.find(user => user.id === previous)
-    //const { name: {first, last}, picture: {large}, phone, cell, email, location, dob: { date, age } } = previousUser;
     const formatedDOB = format(new Date(previousUser.dob.date), "MM/dd/yyyy")
     const { dateValue } = useBirthdayCountdown(previousUser.dob.date);
-
-    
 
     if (!previousUser) {
         return (
@@ -26,7 +20,6 @@ const Profile = () => {
         )
     }
 
-   
     return (
         <main className="min-h-screen  box-border">
             <BreadCrumb name={`${previousUser.name.first} ${previousUser.name.last}`} />
