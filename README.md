@@ -147,4 +147,55 @@ search term
   <Link to={`/${id}`} key={id} onClick={() => dispatch(selectPrevious(id))} data-userid={id} className="bg-slate-400 w-full rounded-lg" >  
   </Link>
 
- 
+  {users &&  users.filter((elements) => {
+                    if (searchTerm) {
+                        
+                        if ((elements.name.first.toLowerCase().includes(searchTerm.toLowerCase()) || elements.name.last.toLowerCase().includes(searchTerm.toLowerCase()))) {
+                            
+                            return elements;
+                        
+                        }
+                    }
+                    return !searchTerm;
+                }).map(values => {
+                    const { name:{first, last}, picture:{large}, id } = values;
+                    return (
+                    
+                        <Link to={`/user/${id}`} key={id} onClick={() => dispatch(selectPrevious(id))} data-userid={id} className="bg-slate-400 w-full rounded-lg" >
+                            <UserCard key={id} first={first} last={last} id={id} picture={large}   />
+                        </Link>
+                        
+                    )
+                })}
+
+        <Link to={`/user/${user.id}`} key={user.id} onClick={() => dispatch(selectPrevious(user.id))} data-userid={user.id} className="bg-slate-400 w-full rounded-lg" >
+
+
+        {previous &&
+                    <NavLink
+                      to={`user/${previous.id}`}
+                      className="text-white hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      {`${previous.name.first} ${previous.name.last}`}
+                    </NavLink>
+                    }
+
+                     {previous &&
+                <div className="p-5 flex flex-col justify-center items-center">
+                    <h3 className="text-xl font-semibold text-white p-5 m-5">Previous User</h3>
+                    <div className="w-10/12"> 
+                        <Link to={`/user/${previous.id}`} key={previous.id} onClick={() => dispatch(selectPrevious(previous.id))} data-userid={previous.id} className="w-full">     
+                            <UserCard key={previous.id} first={previous.name.first} last={previous.name.last} picture={previous.picture.large} />
+                        </Link>   
+                    </div>
+                </div>
+            }
+
+             {previous &&
+                    <NavLink
+                        to={`user/${previous.id}`}
+                        className="text-white hover:bg-purple-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        {`${previous.name.first} ${previous.name.last}`}
+                    </NavLink>
+                  }

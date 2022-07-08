@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
-
-const BreadCrumb = ({ name }) => {
+const BreadCrumbs = () => {
+    const previous = useSelector(state => state.users.previous);
+    const displayPrevPage = previous.map(prev => <p key={prev.id}>{prev.name.first} {prev.name.last}</p>)
+    
     return (
         <div className="p-5 flex flex-row items-center gap-3">
                <Link to="/dashboard" className="underline text-blue-500">
                     Back to Dashboard
                 </Link>
                 |
-                <p>{name}</p>
+                {displayPrevPage}
         </div>
     )
 }
 
-export default BreadCrumb;
+export default BreadCrumbs;

@@ -4,14 +4,15 @@ import { AiOutlineClose } from 'react-icons/ai';
 import useNavBar from "../hooks/useNavBar";
 import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
+import {NavLinkDesktop, NavLinkMobile} from "./navLink";
 
 const Navbar = () => {
-    
-    const { users,previous } = useSelector(store => store.users)
-    const previousUser = users.find(user => user.id === previous);
+    const  previous  = useSelector(state => state.users.previous)
     const { open, toggleNavBar } = useNavBar();
 
-  
+    const displayPreviousDesktop = previous.map(prev => <NavLinkDesktop key={prev.id} previous={prev} />)
+    const displayPreviousMobile = previous.map(prev => <NavLinkMobile key={prev.id} previous={prev} />)
+
 
     return (
         <nav className="bg-indigo-500" data-nav>
@@ -38,15 +39,8 @@ const Navbar = () => {
                     >
                       Dashboard
                     </NavLink>
-  
-                    {previousUser &&
-                    <NavLink
-                      to={`user/${previousUser.id}`}
-                      className="text-white hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      {`${previousUser.name.first} ${previousUser.name.last}`}
-                    </NavLink>
-                    }
+                    {displayPreviousDesktop}
+                    
                   </div>
                 </div>
               </div>
@@ -94,14 +88,7 @@ const Navbar = () => {
                   >
                     Dashboard
                   </NavLink>
-                  {previousUser &&
-                    <NavLink
-                        to={`user/${previousUser.id}`}
-                        className="text-white hover:bg-purple-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >
-                        {`${previousUser.name.first} ${previousUser.name.last}`}
-                    </NavLink>
-                  }
+                 {displayPreviousMobile}
                 </div>
               </div>
             }
