@@ -199,3 +199,5 @@ search term
                         {`${previous.name.first} ${previous.name.last}`}
                     </NavLink>
                   }
+
+                  store.subscribe(() => { const { someData } = store.getState() localStorage.setItem("someData", JSON.stringify(someData)) })

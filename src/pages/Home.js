@@ -2,6 +2,7 @@ import crowd from '../assets/crowd.jpeg'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { MdOutlineCake } from 'react-icons/md'
 import { FaAddressCard } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
@@ -17,18 +18,22 @@ const Home = () => {
                <div className="w-10/12 my-10 bg-violet-500 p-5 rounded">
                    <h3 className="text-white py-5 text-center text-xl">Go to the Dashboard and Find your Friends</h3>
                    <div className="grid grid-cols-[minmax(0,60px)_1fr] items-center justify-around">
-                        <AiOutlineSearch className="text-white text-lg"/>
-                        <p className="text-white py-5">Use the Search Bar to look for your friends Fast and Easy</p>
+                        <AiOutlineSearch className="text-white text-2xl"/>
+                        <p className="text-white text-lg uppercase  py-5">Use the Search Bar to look for your friends Fast and Easy</p>
                    </div>
                    <div className="grid grid-cols-[minmax(0,60px)_1fr] items-center justify-around">
-                        <MdOutlineCake className="text-white text-lg"/>
-                        <p className="text-white py-5">Know when it's your friend's Birthday</p>
+                        <MdOutlineCake className="text-white text-2xl"/>
+                        <p className="text-white text-lg uppercase  py-5">Know when it's your friend's Birthday</p>
                    </div>
                    <div className="grid grid-cols-[minmax(0,60px)_1fr] items-center justify-around">
-                        <FaAddressCard className="text-white text-lg"/>
-                        <p className="text-white py-5">Send Them a Post Card for their Birthday!</p>
+                        <FaAddressCard className="text-white text-2xl"/>
+                        <p className="text-white text-lg uppercase py-5">Send Them a Post Card for their Birthday!</p>
                    </div>
                </div>
+           </div>
+           <div className="p-5 flex flex-col md:flex-row gap-5 justify-center items-center">
+               <p className="text-lg uppercase text-purple-500">See The Random User Dashboard and Make a Friend!</p>
+               <Link to="/dashboard" className="rounded bg-violet-500 p-5 text-white uppercase">Go To Dashboard</Link>
            </div>
         </main>
     )
